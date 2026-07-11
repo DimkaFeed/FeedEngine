@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(SFML 3.0 COMPONENTS
+    Graphics
+    Window
+    System
+    Audio
+    Network
+)
+
+include("${CMAKE_CURRENT_LIST_DIR}/FeedEngineTargets.cmake")
