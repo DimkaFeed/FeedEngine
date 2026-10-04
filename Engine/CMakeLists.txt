@@ -8,20 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Статический CRT
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-set(SFML_STATIC_LIBRARIES TRUE)
-
-find_package(SFML 3.0 REQUIRED COMPONENTS
-    Graphics
-    Window
-    System
-    Audio
-    Network
-)
+find_package(glfw3 CONFIG REQUIRED)
 
 add_library(FeedEngine SHARED
     source/Application.cpp
     source/Clock.cpp
     source/Time.cpp
+    source/GLFWWindow.cpp
 )
 
 set_target_properties(FeedEngine PROPERTIES
@@ -41,11 +34,7 @@ target_include_directories(FeedEngine
 
 target_link_libraries(FeedEngine
     PRIVATE
-        SFML::Graphics
-        SFML::Window
-        SFML::System
-        SFML::Audio
-        SFML::Network
+        glfw
 )
 
 set_target_properties(FeedEngine PROPERTIES

@@ -6,34 +6,32 @@
 #include <memory>
 #include <type_traits>
 
-#include "../Scripting/Script.h"
 #include "Time.h"
+#include "Clock.h"
+
+#include "../Scripting/Script.h"
+#include "../Window/Window.h"
 
 namespace fe
 {
-
 class FE_API Application
 {
 public:
-
     Application();
     virtual ~Application();
 
     void Run();
 
     void AddScript(std::shared_ptr<Script> script);
+    void AddWindow(std::shared_ptr<Window> window);
 
 protected:
-
-    void CreateWindow();
-
     virtual void Init() {}
     virtual void InitWindows() {}
     virtual void Update() {}
 
 private:
     class Impl;
-
     std::unique_ptr<Impl> impl;
 };
 }
